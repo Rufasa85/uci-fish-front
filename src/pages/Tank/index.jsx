@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import Fish from "../../components/Fish";
+import FishForm from "../../components/FishForm";
 import { useParams } from "react-router-dom";
 import API from "../../utils/API";
 const Tank = (props) => {
@@ -12,6 +13,15 @@ const Tank = (props) => {
     });
   }, []);
 
+  const addFish = fishObj=>{
+    fishObj.TankId = id;
+    API.addFish(fishObj,props.token).then(data=>{
+      API.getOneTank(id).then((data) => {
+        setTank(data);
+      });
+    })
+  }
+
   return (
     <>
       {!tank.name ? (
@@ -19,6 +29,9 @@ const Tank = (props) => {
       ) : (
         <>
           <h2>{tank?.name}</h2>
+          {props.userId===tank.UserId?(
+            <FishForm addFish={addFish}/>
+          ):null}
           <div className="Tank">
             {tank?.Fishes?.map((fsh) => (
               <Fish

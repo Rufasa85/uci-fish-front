@@ -1,0 +1,4 @@
+.tanksDiv {
+    display: flex;
+    flex-wrap: wrap;
+}
