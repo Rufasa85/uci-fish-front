@@ -1,5 +1,5 @@
-const URL_PREFIX="http://localhost:3000"
-// const URL_PREFIX=
+// const URL_PREFIX="http://localhost:3000"
+const URL_PREFIX="https://uci-fish-back.onrender.com"
 
 const API = {
     //auth
